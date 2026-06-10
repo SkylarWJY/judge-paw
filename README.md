@@ -58,6 +58,10 @@ This app wasn't hand-written — it was built with [Kiro](https://kiro.dev)'s sp
 
 ---
 
+## Team
+
+Skylar · Justina · Jade
+
 ## Status
 
 🚧 Hackathon build in progress — Miro × Kiro LA Hackathon.
