@@ -21,6 +21,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Local database
+.local-data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
 # OS / editor
 .DS_Store
 .vscode/
