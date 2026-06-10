@@ -5,8 +5,20 @@
 Built **From Board to Build** for the **Miro × Kiro LA Hackathon**: planned in Miro, shipped with Kiro.
 
 <p align="center">
-  <img src="docs/app-home.png" width="280" alt="Judge Paws — Justice Has Four Paws">
+  <img src="docs/screens/1-home.png" width="230" alt="Judge Paws — Justice Has Four Paws">
 </p>
+
+### Screens
+
+<p align="center">
+  <img src="docs/screens/1-home.png" width="150" alt="Home">
+  <img src="docs/screens/2-type.png" width="150" alt="Pick the relationship">
+  <img src="docs/screens/3-evidence.png" width="150" alt="Submit evidence">
+  <img src="docs/screens/4-build.png" width="150" alt="Building the case">
+  <img src="docs/screens/5-court.png" width="150" alt="The courtroom + dog jury">
+  <img src="docs/screens/6-verdict.png" width="150" alt="The verdict">
+</p>
+<p align="center"><sub>Home · Pick the relationship · Submit evidence · Build the case · Courtroom & dog jury · Verdict</sub></p>
 
 ---
 
