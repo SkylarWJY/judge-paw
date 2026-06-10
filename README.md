@@ -46,24 +46,38 @@ This app wasn't hand-written — it was built with [Kiro](https://kiro.dev)'s sp
 
 ## Tech stack
 
-- **Frontend:** standalone build (`index.html`) + a live pink test court (`try.html`)
-- **Backend:** Node verdict engine (`server.mjs`) — `POST /api/verdict`
-- **Brain:** Anthropic **Claude Opus 4.8** with structured output (the verdict always
-  returns `{ ruling, reasoning, sentence }`) + a safety gate
+- **Frontend:** React (in-browser, no build) — landing page + interactive court demo in [`app/`](app/)
+- **Backend:** Node trial engine (`server.mjs`) — `POST /api/trials`
+- **Brain:** Anthropic **Claude Opus 4.8** with structured output — returns the full
+  case object (parties, scores, drama, blame %, red/green flags, ruling, judge's note,
+  caption), with a safety gate for unsafe input
 - **Planning:** Miro Developer Platform
 - **Built with:** Kiro (AI IDE, spec-driven development)
+
+### How the AI plugs in
+
+The frontend renders entirely from one `caseData` object. The `BuildScreen`
+("investigating…") in [`app/jp-screens-2.jsx`](app/jp-screens-2.jsx) calls
+`POST /api/trials`; the server asks **Claude Opus 4.8** to hold court and return a
+verdict matching the exact `caseData` shape. If the backend is unreachable, the app
+falls back to the bundled sample case — so the demo never breaks.
+
+```
+relationship type + evidence  ─►  /api/trials  ─►  Claude Opus 4.8 (structured)
+                                                        │
+                                          full verdict → caseData → Courtroom + Verdict screens
+```
 
 ## Run it locally
 
 ```bash
 npm install
 cp .env.example .env      # then paste your ANTHROPIC_API_KEY
-npm start                 # → http://localhost:4319
+npm start                 # → http://localhost:4319  (redirects to the app)
 ```
 
-Open the page, both partners type their side, hit **Render Verdict** — Judge Paw
-returns a real, AI-rendered ruling. The API key stays server-side and never ships
-to the browser.
+Pick a relationship type, (optionally) add evidence, and Judge Paws holds a real,
+AI-rendered trial. The API key stays server-side and never ships to the browser.
 
 ## Links
 
