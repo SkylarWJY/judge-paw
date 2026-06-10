@@ -46,38 +46,17 @@ This app wasn't hand-written — it was built with [Kiro](https://kiro.dev)'s sp
 
 ## Tech stack
 
-- **Frontend:** React (in-browser, no build) — landing page + interactive court demo in [`app/`](app/)
-- **Backend:** Node trial engine (`server.mjs`) — `POST /api/trials`
-- **Brain:** Anthropic **Claude Opus 4.8** with structured output — returns the full
-  case object (parties, scores, drama, blame %, red/green flags, ruling, judge's note,
-  caption), with a safety gate for unsafe input
+- **Frontend:** single-file prototype (`index.html`) — React rendered in-browser, no build step
 - **Planning:** Miro Developer Platform
 - **Built with:** Kiro (AI IDE, spec-driven development)
+- **AI verdict engine:** a Node + **Claude Opus 4.8** backend powers real AI verdicts —
+  developed separately as a full-stack build (see _Credits_ below).
 
-### How the AI plugs in
+## Try it
 
-The frontend renders entirely from one `caseData` object. The `BuildScreen`
-("investigating…") in [`app/jp-screens-2.jsx`](app/jp-screens-2.jsx) calls
-`POST /api/trials`; the server asks **Claude Opus 4.8** to hold court and return a
-verdict matching the exact `caseData` shape. If the backend is unreachable, the app
-falls back to the bundled sample case — so the demo never breaks.
-
-```
-relationship type + evidence  ─►  /api/trials  ─►  Claude Opus 4.8 (structured)
-                                                        │
-                                          full verdict → caseData → Courtroom + Verdict screens
-```
-
-## Run it locally
-
-```bash
-npm install
-cp .env.example .env      # then paste your ANTHROPIC_API_KEY
-npm start                 # → http://localhost:4319  (redirects to the app)
-```
-
-Pick a relationship type, (optionally) add evidence, and Judge Paws holds a real,
-AI-rendered trial. The API key stays server-side and never ships to the browser.
+Open `index.html` in a browser (or visit the GitHub Pages deployment). The prototype runs
+the full courtroom flow on sample data — pick a relationship type, review the "evidence,"
+and Judge Paws delivers the verdict. 🐾
 
 ## Links
 
@@ -93,7 +72,7 @@ is verifiable in the commit history (`git shortlog -sne`).
 
 | Person | Role |
 |--------|------|
-| **Skylar** ([@SkylarWJY](https://github.com/SkylarWJY)) | **Concept & product vision** · **UI/UX design** · **landing page** · **full-stack build** — interactive React app + Node/Claude AI verdict engine (`server.mjs`, `/api/trials`) · Miro planning · Kiro specs (`.kiro/specs/`) · pitch deck |
+| **Skylar** ([@SkylarWJY](https://github.com/SkylarWJY)) | **Concept & product vision** · **UI/UX design** · **landing page** · **full build** — interactive app + AI verdict engine (Node + Claude Opus 4.8, in a separate full-stack repo) · Miro planning · Kiro specs (`.kiro/specs/`) · pitch deck |
 | **Justina** ([@justina-xu](https://github.com/)) | _Team collaboration & feedback — (Justina: edit this line with your contributions)_ |
 | **Jade** ([@dxj1031](https://github.com/dxj1031)) | _Team collaboration & feedback — (Jade: edit this line with your contributions)_ |
 
