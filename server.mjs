@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
+import path from "node:path";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { config } from "./backend/env.mjs";
 import {
@@ -42,8 +43,19 @@ createServer(async (request, response) => {
     }
 
     if (request.method === "GET" && (url.pathname === "/" || url.pathname === "/index.html")) {
-      sendHtml(response, patchedIndex);
+      sendHtml(response, readFileSync("app/Judge Paws.html", "utf8"));
       return;
+    }
+
+    if (request.method === "GET" && url.pathname.startsWith("/app/")) {
+      const filePath = path.join("app", url.pathname.slice(5));
+      if (existsSync(filePath)) {
+        const ext = path.extname(filePath);
+        const mime = { ".html": "text/html", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".jsx": "text/javascript", ".js": "text/javascript", ".css": "text/css" }[ext] || "application/octet-stream";
+        response.writeHead(200, { "content-type": mime, "cache-control": "no-store" });
+        response.end(readFileSync(filePath));
+        return;
+      }
     }
 
     sendText(response, 404, "Not found");
@@ -124,6 +136,18 @@ async function routeApi(request, response, url) {
     const member = ensureMember(db, body.member || {});
     const saved = insertEmotionEvents(db, segments[2], member.id, Array.isArray(body.events) ? body.events : []);
     sendJson(response, 201, { emotionEvents: saved });
+    return;
+  }
+
+  if (request.method === "POST" && url.pathname === "/api/trials") {
+    const body = await readJson(request);
+    const adapted = {
+      caseData: { relationshipType: body.relationshipType || "couple" },
+      evidence: (body.evidence || []).map(e => ({ label: e.label, text: e.text, kind: "note" })),
+      member: { memberId: "local-demo-member", tier: "pro" }
+    };
+    const result = await handleJudgePaw(adapted);
+    sendJson(response, result.status, result.body);
     return;
   }
 
