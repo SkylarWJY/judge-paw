@@ -4,6 +4,10 @@
 
 Built **From Board to Build** for the **Miro × Kiro LA Hackathon**: planned in Miro, shipped with Kiro.
 
+<p align="center">
+  <img src="docs/app-home.png" width="280" alt="Judge Paws — Justice Has Four Paws">
+</p>
+
 ---
 
 ## The problem
