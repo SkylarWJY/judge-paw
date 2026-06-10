@@ -46,10 +46,24 @@ This app wasn't hand-written — it was built with [Kiro](https://kiro.dev)'s sp
 
 ## Tech stack
 
-- **Frontend:** _(TBD in design phase — likely React + Vite)_
-- **Brain:** Anthropic Claude — renders the verdict from both statements
+- **Frontend:** standalone build (`index.html`) + a live pink test court (`try.html`)
+- **Backend:** Node verdict engine (`server.mjs`) — `POST /api/verdict`
+- **Brain:** Anthropic **Claude Opus 4.8** with structured output (the verdict always
+  returns `{ ruling, reasoning, sentence }`) + a safety gate
 - **Planning:** Miro Developer Platform
 - **Built with:** Kiro (AI IDE, spec-driven development)
+
+## Run it locally
+
+```bash
+npm install
+cp .env.example .env      # then paste your ANTHROPIC_API_KEY
+npm start                 # → http://localhost:4319
+```
+
+Open the page, both partners type their side, hit **Render Verdict** — Judge Paw
+returns a real, AI-rendered ruling. The API key stays server-side and never ships
+to the browser.
 
 ## Links
 
