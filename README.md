@@ -73,8 +73,8 @@ is verifiable in the commit history (`git shortlog -sne`).
 | Person | Role |
 |--------|------|
 | **Skylar** ([@SkylarWJY](https://github.com/SkylarWJY)) | **Concept & product vision** · **UI/UX design** · **landing page** · **full build** — interactive app + AI verdict engine (Node + Claude Opus 4.8, in a separate full-stack repo) · Miro planning · Kiro specs (`.kiro/specs/`) · pitch deck |
-| **Justina** ([@justina-xu](https://github.com/)) | _Team collaboration & feedback — (Justina: edit this line with your contributions)_ |
-| **Jade** ([@dxj1031](https://github.com/dxj1031)) | _Team collaboration & feedback — (Jade: edit this line with your contributions)_ |
+| **Justina** | Pitch deck · team collaboration |
+| **Jade** ([@dxj1031](https://github.com/dxj1031)) | GitHub Pages deployment · Miro × Kiro integration setup · team collaboration |
 
 > **Provenance.** Every commit in this repo is authored by its real contributor — run
 > `git shortlog -sne` or check the GitHub *Contributors* graph to see exactly who wrote
