@@ -54,7 +54,8 @@ This app wasn't hand-written — it was built with [Kiro](https://kiro.dev)'s sp
 - **Planning:** Miro Developer Platform
 - **Built with:** Kiro (AI IDE, spec-driven development)
 - **AI verdict engine:** a Node + **Claude Opus 4.8** backend powers real AI verdicts —
-  developed separately as a full-stack build (see _Credits_ below).
+  developed separately as a **[full-stack build →](https://github.com/SkylarWJY/judge-paws)**
+  (landing + waitlist + court app + verdict API), by Skylar.
 
 ## Try it
 
